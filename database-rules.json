@@ -1,0 +1,27 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "usernames": {
+      ".read": true,
+      ".write": "auth != null && !data.exists()"
+    },
+    "posts": {
+      ".read": true,
+      ".write": "auth != null",
+      ".indexOn": ["createdAt", "userId"]
+    },
+    "likes": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "comments": {
+      ".read": true,
+      ".write": "auth != null"
+    }
+  }
+}
